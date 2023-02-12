@@ -1,0 +1,28 @@
+<% layout('layouts/boilerplate') %>
+
+<h1>Edit Product</h1>
+<form action="/products/<%= product._id %>?_method=PUT" method="POST">
+    <label for="title">Title: </label>
+    <input type="text" name="product[title]" id="title" value="<%= product.title %>">
+
+    <p>Product Type: </p>
+   
+    <input type="radio" name="product[productType]" id="vehicle" value="vehicle" <%= product.productType === 'vehicle'? 'checked': '' %>>
+    <label for="vehicle">Vehicle</label>
+   
+    <input type="radio" name="product[productType]" id="parts" value="parts" <%= product.productType === 'parts'? 'checked': '' %>>
+    <label for="parts">Parts</label>
+    
+<br>
+    <label for="price">Price: </label>
+    <input type="number" name="product[price]" id="price" value="<%= product.price %>">
+
+    <br> <br>
+    <label for="description">Description</label>
+    <textarea name="product[description]" id="description" cols="30" rows="5" ><%= product.description %></textarea>
+
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+<a href="/products/<%= product._id %>">Back</a>

@@ -2,7 +2,9 @@
     <h1>All Products</h1>
     <ul>
     <% for(product of products) {%>
-        <li><a href="/product/<%= product._id %>"> <%= product.title %> </a></li>
+        <li><a href="/products/<%= product._id %>"> <%= product.title %> </a></li>
         
         <% } %>
     </ul>
+
+    <a href="/products/new">Add New Product</a>
