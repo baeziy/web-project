@@ -55,7 +55,7 @@ app.get('/products/:id/edit', async (req, res) =>{
 });
 
 app.put('/products/:id', async (req, res) =>{
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body.product);
+    const product = await Product.findByIdAndUpdate(req.params.id, {...req.body.product});
     res.redirect(`/products/${product.id}`);
 });
 
