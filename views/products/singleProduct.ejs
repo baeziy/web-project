@@ -1,27 +1,44 @@
 <% layout('layouts/boilerplate') %>
 
-<% let s = product.productType %>
-<% s = s[0].toUpperCase() + s.slice(1);%>
+  <% let s=product.productType %>
+    <% s=s[0].toUpperCase() + s.slice(1);%>
 
-<div class="row col-6 offset-3">
-    <div class="card" style="width: 40rem; padding: 0 0">
-        <img class="card-img-top img-fluid" src=<%= product.image %> alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><%= product.title %></h5>
-          <p class="card-text text-muted"><%= product.description %></p>
+      <div class="row col-6 offset-3">
+        <div class="card" style="width: 40rem; padding: 0 0">
+          <img class="card-img-top img-fluid" src=<%=product.image %> alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= product.title %>
+            </h5>
+            <p class="card-text text-muted">
+              <%= product.description %>
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">$<%= product.price %>
+            </li>
+            <li class="list-group-item">
+              <%= s %>
+            </li>
+
+          </ul>
+          <div class="card-body">
+            <a href="/products/<%= product._id  %>/edit" class="card-link btn btn-info">Edit</a>
+            <form class="d-inline" action="/products/<%= product._id %>/del?_method=DELETE" method="POST">
+              <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">$<%= product.price %></li>
-          <li class="list-group-item"><%= s %></li>
-          
-        </ul>
-        <div class="card-body">
-          <a href="/products/<%= product._id  %>/edit" class="card-link btn btn-info">Edit</a>
-          <form class="d-inline" action="/products/<%= product._id %>/del?_method=DELETE" method="POST">
-            <button class="btn btn-danger"type="submit">Delete</button>
+        <h2 class="mb-3 mt-3">Leave a Review</h2>
+        <form action="">
+          <div class="mb-3 mt-3">
+            <label class="form-label" for="rating">Rating</label>
+            <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+        </div>
+          <div class="mb-3 mt-3">
+              <label class="form-label" for="body">Review</label>
+              <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5"></textarea>
+          </div>
+          <button class="btn btn-success" type="submit">Submit</button>
         </form>
-        </div>
       </div>
-</div>
-
-  
