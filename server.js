@@ -52,7 +52,7 @@ app.post('/products', validateProduct , asyncHandler( async (req, res)=>{
 
 // view specific product
 app.get('/products/:id', asyncHandler(async (req, res) =>{
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('reviews');
     res.render('products/singleProduct', {product: product, title: product.title});
 
 }));
