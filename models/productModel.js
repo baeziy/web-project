@@ -4,20 +4,24 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: [true, "Please enter a title"]
     },
     productType: {
         type: String,
         enum: ['vehicle', 'parts'],
-        required: true
+        required: [true, "Please select a product type"]
     },
     price: {
         type: Number,
-        required: true
+        required: [true, "Please enter a price"]
+    },
+    image: {
+        type: String,
+        required: [true, "Please enter an image link"]
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Please enter a description"]
     }
 
 },{

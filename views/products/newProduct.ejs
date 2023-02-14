@@ -1,28 +1,58 @@
 <% layout('layouts/boilerplate') %>
 
-<h1>New Product</h1>
-<form action="/products" method="POST">
-    <label for="title">Title: </label>
-    <input type="text" name="product[title]" id="title">
 
-    <p>Product Type: </p>
-   
-    <input type="radio" name="product[productType]" id="vehicle" value="vehicle">
-    <label for="vehicle">Vehicle</label>
-   
-    <input type="radio" name="product[productType]" id="parts" value="parts">
-    <label for="parts">Parts</label>
-    
-<br>
-    <label for="price">Price: </label>
-    <input type="number" name="product[price]" id="price">
 
-    <br> <br>
-    <label for="description">Description</label>
-    <textarea name="product[description]" id="description" cols="30" rows="5"></textarea>
+    <div class="row">
+        <h1 class="text-center">New Product</h1>
+        <div class="col-6 offset-3">
+            <form action="/products" method="POST">
 
-    <br>
-    <button type="submit">Submit</button>
-</form>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title: </label>
+                    <input class="form-control" type="text" name="product[title]" id="title">
+                </div>
+                <div class="mb-3">
+                    Product Type:
 
-<a href="/products">All Products</a>
+                    <input class="form-label" type="radio" name="product[productType]" id="vehicle" value="vehicle">
+                    <label for="vehicle">Vehicle</label>
+
+
+                    <input class="form-label" type="radio" name="product[productType]" id="parts" value="parts">
+                    <label for="parts">Parts</label>
+                </div>
+
+                <div class=""><label class="form-label" for="price">Price: </label></div>
+                <div class="input-group mb-3">                    
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    
+                    <input class="form-control" type="number" name="product[price]" id="price" placeholder="00">
+                    <div class="input-group-append">
+                      <span class="input-group-text">.00</span>
+                    </div>
+                  </div>
+                <div class="mb-3">
+                    
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image Link: </label>
+                    <input class="form-control" type="text" name="product[image]" id="image">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description:</label>
+                    <textarea class="form-control" name="product[description]" id="description" cols="30"
+                        rows="5"></textarea>
+                </div>
+
+                <div class="mb-3"><button class="btn btn-success" type="submit">Submit</button></div>
+                
+            </form> 
+            <div class="mb-3">
+                <a href="/products">All Products</a>
+            </div>
+           
+        </div>
+    </div>
