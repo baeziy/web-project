@@ -5,5 +5,9 @@
 * Mongoose ODM
 * Express framework
 * Node.js server
-* EJS rendering
-* EJS MATE layouting
+* EJS rendering package
+* EJS MATE layouting package
+* Morgan Logger package
+* Colors package
+* dotenv package
+* method-override package
