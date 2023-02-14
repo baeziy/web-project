@@ -7,6 +7,7 @@ const engine = require('ejs-mate');
 const port = process.env.PORT || 3000;
 const Product = require('./models/productModel');
 const methodOverride = require('method-override');
+const morgan = require('morgan');
 
 connectDB();
 
@@ -16,6 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(morgan('tiny'));
 
 //home page
 app.get('/', (req, res)=>{
