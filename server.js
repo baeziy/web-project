@@ -10,6 +10,8 @@ const methodOverride = require('method-override');
 const morgan = require('morgan');
 const asyncHandler = require('express-async-handler');
 const ExpressError = require('./utils/ExpressError');
+const Joi = require('joi');
+const validateProduct = require('./middleware/validateProduct');
 
 connectDB();
 
@@ -38,8 +40,9 @@ app.get('/products/new', (req, res) =>{
 })
 
 // saving the data got from form to database
-app.post('/products', asyncHandler( async (req, res)=>{
-    if(!req.body.product){ throw new ExpressError('Invalid Data', 400)}
+app.post('/products', validateProduct , asyncHandler( async (req, res)=>{
+
+   
     const product = await Product.create(req.body.product);
     res.redirect(`/products/${product.id}`);
 
@@ -60,7 +63,7 @@ app.get('/products/:id/edit', asyncHandler( async (req, res) =>{
 }));
 
 // updating product to the database
-app.put('/products/:id', asyncHandler(async (req, res) =>{
+app.put('/products/:id', validateProduct, asyncHandler(async (req, res) =>{
     const product = await Product.findByIdAndUpdate(req.params.id, {...req.body.product});
     res.redirect(`/products/${product.id}`);
 }));
@@ -79,7 +82,7 @@ app.all('*', (req, res, next)=>{
 app.use((err, req, res, next)=>{
     const { statusCode = 500} = err;
     if(!err.message) err.message = 'Oh, no! Something Went Wrong'
-    res.status(statusCode).render('error', {message: message, title: 'Error'});
+    res.status(statusCode).render('error', {message: err.message, title: 'Error'});
 })
 
 app.listen(port, (req, res)=> console.log(`Listening at Port = ${port}`));
