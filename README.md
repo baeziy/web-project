@@ -11,3 +11,4 @@
 * Colors package
 * dotenv package
 * method-override package
+* joi package
