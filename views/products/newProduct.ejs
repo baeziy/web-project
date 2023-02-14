@@ -5,21 +5,27 @@
     <div class="row">
         <h1 class="text-center">New Product</h1>
         <div class="col-6 offset-3">
-            <form action="/products" method="POST">
+            <form class="needs-validation" action="/products" method="POST" novalidate>
 
                 <div class="mb-3">
                     <label class="form-label" for="title">Title: </label>
-                    <input class="form-control" type="text" name="product[title]" id="title">
+                    <input class="form-control" type="text" name="product[title]" id="title" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     Product Type:
 
-                    <input class="form-label" type="radio" name="product[productType]" id="vehicle" value="vehicle">
+                    <input class="form-label" type="radio" name="product[productType]" id="vehicle" value="vehicle" required>
                     <label for="vehicle">Vehicle</label>
 
 
                     <input class="form-label" type="radio" name="product[productType]" id="parts" value="parts">
                     <label for="parts">Parts</label>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
                 </div>
 
                 <div class=""><label class="form-label" for="price">Price: </label></div>
@@ -28,23 +34,30 @@
                       <span class="input-group-text">$</span>
                     </div>
                     
-                    <input class="form-control" type="number" name="product[price]" id="price" placeholder="00">
+                    <input class="form-control" type="number" name="product[price]" id="price" placeholder="00" required>
                     <div class="input-group-append">
-                      <span class="input-group-text">.00</span>
+                        <span class="input-group-text">.00</span>
+                      </div>
+                    <div class="valid-feedback">
+                      Looks good!
                     </div>
+                    
                   </div>
                 <div class="mb-3">
                     
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="image">Image Link: </label>
-                    <input class="form-control" type="text" name="product[image]" id="image">
+                    <input class="form-control" type="text" name="product[image]" id="image" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="description">Description:</label>
                     <textarea class="form-control" name="product[description]" id="description" cols="30"
-                        rows="5"></textarea>
+                        rows="5" required></textarea>
                 </div>
 
                 <div class="mb-3"><button class="btn btn-success" type="submit">Submit</button></div>
@@ -56,3 +69,25 @@
            
         </div>
     </div>
+
+
+    <script>
+        (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+    </script>
