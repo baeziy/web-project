@@ -7,21 +7,27 @@
 <div class="row">
     <h1 class="text-center">Edit Product</h1>
     <div class="col-6 offset-3">
-        <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+        <form class="needs-validation" action="/products/<%= product._id %>?_method=PUT" method="POST" novalidate>
 
             <div class="mb-3">
                 <label class="form-label" for="title">Title: </label>
-                <input class="form-control" type="text" name="product[title]" id="title" value="<%= product.title %>">
+                <input class="form-control" type="text" name="product[title]" id="title" value="<%= product.title %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
             </div>
             <div class="mb-3">
                 Product Type:
 
-                <input class="form-label" type="radio" name="product[productType]" id="vehicle" value="vehicle" <%= product.productType === 'vehicle'? 'checked': '' %>>
+                <input class="form-label" type="radio" name="product[productType]" id="vehicle" value="vehicle" <%= product.productType === 'vehicle'? 'checked': '' %> required>
                 <label for="vehicle">Vehicle</label>
 
 
                 <input class="form-label" type="radio" name="product[productType]" id="parts" value="parts"  <%= product.productType === 'parts'? 'checked': '' %>>
                 <label for="parts">Parts</label>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
             </div>
 
             <div class=""><label class="form-label" for="price">Price: </label></div>
@@ -30,23 +36,32 @@
                   <span class="input-group-text">$</span>
                 </div>
                 
-                <input class="form-control" type="number" name="product[price]" id="price" placeholder="00" value="<%= product.price %>">
+                <input class="form-control" type="number" name="product[price]" id="price" placeholder="00" value="<%= product.price %>" required>
                 <div class="input-group-append">
                   <span class="input-group-text">.00</span>
                 </div>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
               </div>
             <div class="mb-3">
                 
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image Link: </label>
-                <input class="form-control" type="text" name="product[image]" id="image" value=<%= product.image %>>
+                <input class="form-control" type="text" name="product[image]" id="image" value=<%= product.image %> required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="description">Description:</label>
                 <textarea class="form-control" name="product[description]" id="description" cols="30"
-                    rows="5"><%= product.description %></textarea>
+                    rows="5" required><%= product.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                      </div>
             </div>
 
             <div class="mb-3"><button class="btn btn-info" type="submit">Update</button></div>
