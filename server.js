@@ -12,6 +12,8 @@ const asyncHandler = require('express-async-handler');
 const ExpressError = require('./utils/ExpressError');
 const Joi = require('joi');
 const validateProduct = require('./middleware/validateProduct');
+const Review = require('./models/reviewModel');
+const validateReview = require('./middleware/validateReview');
 
 connectDB();
 
@@ -73,6 +75,16 @@ app.delete('/products/:id/del', asyncHandler(async (req, res)=>{
     await Product.findByIdAndDelete(req.params.id);
     res.redirect(`/products`);
 
+}));
+
+// making a review about a specific product
+app.post('/products/:id/reviews', validateReview , asyncHandler(async (req, res)=>{
+    const product = await Product.findById(req.params.id)
+    const review = new Review(req.body.review);
+    product.reviews.push(review);
+    await review.save();
+    await product.save();
+    res.redirect(`/products/${req.params.id}`);
 }));
 
 app.all('*', (req, res, next)=>{
