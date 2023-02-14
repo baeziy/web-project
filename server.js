@@ -87,6 +87,13 @@ app.post('/products/:id/reviews', validateReview , asyncHandler(async (req, res)
     res.redirect(`/products/${req.params.id}`);
 }));
 
+app.delete('/products/:id/reviews/:reviewId', asyncHandler(async(req, res)=>{
+    const {id, reviewId} = req.params;
+    await Product.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
+    await Review.findByIdAndDelete(reviewId);
+    res.redirect(`/products/${id}`);
+}));
+
 app.all('*', (req, res, next)=>{
     return next(new ExpressError('Page Not Found', 404));
 })
