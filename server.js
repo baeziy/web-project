@@ -72,6 +72,7 @@ app.put('/products/:id', validateProduct, asyncHandler(async (req, res) =>{
 
 // deleting the product from the database
 app.delete('/products/:id/del', asyncHandler(async (req, res)=>{
+    
     await Product.findByIdAndDelete(req.params.id);
     res.redirect(`/products`);
 
